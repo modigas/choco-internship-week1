@@ -1,1 +1,0 @@
-# choco-internship-week1
