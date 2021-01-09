@@ -25,7 +25,7 @@ SECRET_KEY = '##o8^lnzrsn6rajwi_f*w^zr7iiy@w2yvu@!1ec*zw_h1_wyh$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 
 # Application definition
@@ -76,18 +76,13 @@ WSGI_APPLICATION = 'scraper_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE' : 'django.db.backends.postgresql_psycopg2',
-
-        'NAME' : 'productsdb',
-
-        'USER' : 'modigas',
-
-        'PASSWORD' : 'modigas',
-
-        'HOST' : 'localhost',
-
-        'POST' : '',
-
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'productsdb', 
+        'USER': 'postgres', 
+        'PASSWORD': 'modigas',
+        'HOST': 'localhost', 
+        'PORT': '5432',
     }
 }
 

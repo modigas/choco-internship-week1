@@ -1,43 +1,49 @@
 import scrapy
 import re
+from scraper_project.productscraper.items import ProductscraperItem
+from products.models import Product
 
-class TechSpider(scrapy.Spider):
-    name = "tech"
-
+class TechSpiderSulpak(scrapy.Spider):
+    name = 'sulpak_tech'
+    allowed_domains = ['www.sulpak.kz']
     start_urls = [
-        'https://www.sulpak.kz/f/smartfoniy/nur_sultan'
-    ]
+                   'https://www.sulpak.kz/f/smartfoniy/nur_sultan',
+                   'https://www.sulpak.kz/f/noutbuki/nur_sultan',
+                   'https://www.sulpak.kz/f/videokartiy/nur_sultan',
+                   'https://www.sulpak.kz/f/processoriy/nur_sultan'
+                 ]
 
     def parse(self, response):
-        for products in response.css('div.goods-tiles'):
-            try:
-                yield {
-                    'title': re.sub('[^A-Za-z0-9 ]+', '', products.css('.title ::text').get().strip()),
-                    'price': re.sub('[^A-Za-z0-9 ]+', '', products.css('div.price ::text').get().strip()),
-                }
-            except:
-                yield {
-                    'title': re.sub('[^A-Za-z0-9 ]+', '', products.css('.title ::text').get().strip()),
-                    'price': 'NA',
-                }
+        
+        category = response.xpath("//div[@class='breadcrumbs']/ul/li[4]/text()").get()
+        products = response.xpath("//div[@class='goods-tiles']")
+        for product in products:
+            # item = ProductscraperItem()
+            title = product.xpath('normalize-space(.//descendant::h3/text())').get()
+            price = product.xpath(".//descendant::div[@class='price']/span/text()").get()
+            if price:
+                # item['title'] = title
+                # item['price'] = price
+                # item['category'] = category
+                # item['store'] = 'Sulpak'
+                # yield item
+                entry = Product(title = title, category = category, price = price, store = 'Sulpak')
+                entry.save()
 
-        next_page = response.css('a.next').attrib['href']
-        
-        if next_page is not None:
-            yield response.follow(next_page, callback=self.parse)
-#     def start_requests(self):
-#         yield SplashRequest(
-#             url='https://www.technodom.kz/smartfony-i-gadzhety/smartfony-i-telefony/smartfony/f/brands/apple?page=1',
-#             callback=self.parse,
-#         )
-        
-#     def parse(self, response):
-#         goods = response.css('div.ProductCard-Content::text')
-#         i = 0
-#         for good in goods:
-#             print(f'{i}: {good}')
-#             i += 1
-#         # titles = response.css('h3.title ::text').getall()
-#         # prices = response.css('div.price ::text').getall()
-#         # for title, price in zip(titles, prices):
-#         #     print(f'product: {title.strip()} price: {price}')
+                yield ProductscraperItem(
+                    title = title,
+                    price = price,
+                    category = category,
+                    store = 'Sulpak'
+                    )
+                # yield {
+                #     'category' : category,
+                #     'title' : title,
+                #     'price' : price
+                # }
+
+        next_page = response.xpath("//a[@class='next']/@href").get()
+        next_page_url = f"https://www.sulpak.kz{next_page}"
+
+        if next_page:
+            yield scrapy.Request(url=next_page_url, callback=self.parse)
