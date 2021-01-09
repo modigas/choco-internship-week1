@@ -18,15 +18,9 @@ class TechSpiderSulpak(scrapy.Spider):
         category = response.xpath("//div[@class='breadcrumbs']/ul/li[4]/text()").get()
         products = response.xpath("//div[@class='goods-tiles']")
         for product in products:
-            # item = ProductscraperItem()
             title = product.xpath('normalize-space(.//descendant::h3/text())').get()
             price = product.xpath(".//descendant::div[@class='price']/span/text()").get()
             if price:
-                # item['title'] = title
-                # item['price'] = price
-                # item['category'] = category
-                # item['store'] = 'Sulpak'
-                # yield item
                 entry = Product(title = title, category = category, price = price, store = 'Sulpak')
                 entry.save()
 
@@ -35,12 +29,8 @@ class TechSpiderSulpak(scrapy.Spider):
                     price = price,
                     category = category,
                     store = 'Sulpak'
-                    )
-                # yield {
-                #     'category' : category,
-                #     'title' : title,
-                #     'price' : price
-                # }
+                )
+
 
         next_page = response.xpath("//a[@class='next']/@href").get()
         next_page_url = f"https://www.sulpak.kz{next_page}"
