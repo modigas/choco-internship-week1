@@ -20,3 +20,5 @@ At this stage. Not all websites are handled (Mechta and Technodom). The crawling
 python manage.py scrape
 ```
 scrape is the command that launches scrapy spiders, that writes all data in the PostgreSQL database.
+
+Celery and REST API functionality is not realized at this moment, but will be added later.)
