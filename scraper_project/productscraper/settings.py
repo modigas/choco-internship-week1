@@ -90,7 +90,14 @@ ITEM_PIPELINES = {
 FEED_EXPORT_ENCODING = 'utf-8'
 
 #SELENIUM
+from shutil import which
+
 
 SELENIUM_DRIVER_NAME = 'chrome'
-SELENIUM_DRIVER_EXECUTABLE_PATH = './chromedriver'
-SELENIUM_DRIVER_ARGUMENTS=['-headless']  # '--headless' if using chrome instead of firefox
+SELENIUM_DRIVER_EXECUTABLE_PATH = '.././chromedriver'
+SELENIUM_DRIVER_ARGUMENTS=['--headless'] 
+
+
+# SELENIUM_DRIVER_NAME = 'chrome'
+# SELENIUM_DRIVER_EXECUTABLE_PATH = './chromedriver'
+# SELENIUM_DRIVER_ARGUMENTS=['--headless'] 

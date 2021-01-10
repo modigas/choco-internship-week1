@@ -23,7 +23,6 @@ class TechSpiderSulpak(scrapy.Spider):
             if price:
                 entry = Product(title = title, category = category, price = price, store = 'Sulpak')
                 entry.save()
-
                 yield ProductscraperItem(
                     title = title,
                     price = price,

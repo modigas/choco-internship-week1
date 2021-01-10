@@ -8,7 +8,7 @@ from scraper_project.productscraper.spiders.technodom_spider import TechnodomTec
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         process = CrawlerProcess()
-        # process.crawl(TechSpiderSulpak)
-        # process.crawl(TechSpiderShopww)
-        process.crawl(TechnodomTechSpider)
+        process.crawl(TechSpiderSulpak)
+        process.crawl(TechSpiderShopww)
+        # process.crawl(TechnodomTechSpider)
         process.start()
