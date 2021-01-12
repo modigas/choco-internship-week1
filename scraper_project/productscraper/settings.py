@@ -92,9 +92,11 @@ FEED_EXPORT_ENCODING = 'utf-8'
 #SELENIUM
 from shutil import which
 
+print(f"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {which('chromedriver')} ~~~~~~~~~~~~~~~~~~~~~~~~~")
+
 
 SELENIUM_DRIVER_NAME = 'chrome'
-SELENIUM_DRIVER_EXECUTABLE_PATH = '.././chromedriver'
+SELENIUM_DRIVER_EXECUTABLE_PATH = which('chromedriver')
 SELENIUM_DRIVER_ARGUMENTS=['--headless'] 
 
 
