@@ -6,16 +6,23 @@
 
 # useful for handling different item types with a single interface
 import psycopg2
+import os
 from itemadapter import ItemAdapter
 
 
 class ProductscraperPipeline:
 
     def open_spider(self, spider):
-        hostname = 'localhost'
-        username = 'modigas'
-        password = 'modigas'
-        database = 'productsdb'
+
+        hostname = os.environ.get('DB_HOST')
+        username = os.environ.get('DB_NAME')
+        password = os.environ.get('DB_PASS')
+        database = 'products_db'
+
+        # hostname = 'localhost'
+        # username = 'modigas'
+        # password = 'modigas'
+        # database = 'productsdb'
         self.connection = psycopg2.connect(
             host = hostname,
             user = username,
