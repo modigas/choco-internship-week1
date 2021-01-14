@@ -2,8 +2,6 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
-
 # useful for handling different item types with a single interface
 import psycopg2
 import os
@@ -23,6 +21,7 @@ class ProductscraperPipeline:
         # username = 'modigas'
         # password = 'modigas'
         # database = 'productsdb'
+        
         self.connection = psycopg2.connect(
             host = hostname,
             user = username,
