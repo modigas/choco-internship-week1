@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/usr/src/django-scraper
+    ports:
+      - 8000:8000
+    command: >
+      sh -c "python /usr/src/django-scraper/manage.py migrate && python /usr/src/django-scraper/manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - products_db
+  products_db:
+    image: postgres:13.1-alpine
+    environment: 
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+  redis_app:
+    image: redis
+
+volumes:
+  postgres_data:
+   
