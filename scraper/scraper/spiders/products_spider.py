@@ -16,11 +16,11 @@ from scraper.scraper.items import ScraperItem
 class StoreSpider(scrapy.Spider):
     name = 'mechta_tech'
     allowed_domains = ['www.mechta.kz']
-    # start_urls = ['https://www.mechta.kz/api/main/catalog_new/index.php?section=noutbuki&page_num=1&catalog=true&page_element_count=18',
-    #               'https://www.mechta.kz/api/main/catalog_new/index.php?section=smartfony&page_num=1&catalog=true&page_element_count=18',
-    #               'https://www.mechta.kz/api/main/catalog_new/index.php?section=processor&page_num=1&catalog=true&page_element_count=18',
-    #               'https://www.mechta.kz/api/main/catalog_new/index.php?section=videokarta&page_num=1&catalog=true&page_element_count=18']
-    scrape_urls = scrape_urls.MECHTA_URLS
+    start_urls = ['https://www.mechta.kz/api/main/catalog_new/index.php?section=noutbuki&page_num=1&catalog=true&page_element_count=18',
+                  'https://www.mechta.kz/api/main/catalog_new/index.php?section=smartfony&page_num=1&catalog=true&page_element_count=18',
+                  'https://www.mechta.kz/api/main/catalog_new/index.php?section=processor&page_num=1&catalog=true&page_element_count=18',
+                  'https://www.mechta.kz/api/main/catalog_new/index.php?section=videokarta&page_num=1&catalog=true&page_element_count=18']
+    # scrape_urls = scrape_urls.MECHTA_URLS
 
     max_page_number = 1
     store_name = 'MECHTA'
@@ -70,7 +70,11 @@ class StoreSpider(scrapy.Spider):
 class BasicSpiderShopWW(scrapy.Spider):
     name = 'shopww_tech'
     allowed_domains = ['www.shop.kz']
-    start_urls = scrape_urls.SHOPWW_URLS
+    start_urls = ['https://shop.kz/smartfony/filter/almaty-is-v_nalichii-or-ojidaem-or-dostavim/apply/',
+                  'https://shop.kz/videokarty/filter/nur_sultan-is-v_nalichii-or-ojidaem-or-dostavim/apply/',
+                  'https://shop.kz/noutbuki/filter/nur_sultan-is-v_nalichii-or-ojidaem-or-dostavim/apply/',
+                  'https://shop.kz/protsessory/filter/nur_sultan-is-v_nalichii-or-ojidaem-or-dostavim/apply/']
+    # start_urls = scrape_urls.SHOPWW_URLS
 
     store_name = 'WHITE WIND'
 
@@ -113,11 +117,17 @@ class BasicSpiderShopWW(scrapy.Spider):
 class BasicSpiderSulpak(scrapy.Spider):
     name = 'sulpak_tech'
     allowed_domains = ['www.sulpak.kz']
-    start_urls = scrape_urls.SULPAK_URLS
+    start_urls = ['https://www.sulpak.kz/f/smartfoniy/nur_sultan',
+                  'https://www.sulpak.kz/f/noutbuki/nur_sultan',
+                  'https://www.sulpak.kz/f/videokartiy/nur_sultan',
+                  'https://www.sulpak.kz/f/processoriy/nur_sultan']
+    # start_urls = scrape_urls.SULPAK_URLS
 
     store_name = 'SULPAK'
 
     def parse(self, response):
+        loader = ItemLoader(item=ScraperItem(), response=response)
+        loader.default_output_processor = TakeFirst()
         category = response.xpath("//div[@class='breadcrumbs']/ul/li[4]/text()").get()
         products = response.xpath("//div[@class='goods-tiles']")
         for product in products:
