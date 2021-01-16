@@ -1,0 +1,4 @@
+from django.contrib.auth import get_user_model
+
+user = get_user_model()
+user.objects.create_superuser(username='modigas', password='modigas')

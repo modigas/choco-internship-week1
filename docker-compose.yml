@@ -1,6 +1,14 @@
 version: '3.7'
 
 services:
+  products_db:
+    image: postgres:13.1-alpine
+    environment: 
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=modigas
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
   web:
     build: .
     volumes:
@@ -8,21 +16,31 @@ services:
     ports:
       - 8000:8000
     command: >
-      sh -c "python /usr/src/django-scraper/manage.py migrate && python /usr/src/django-scraper/manage.py runserver 0.0.0.0:8000"
+      sh -c "python /usr/src/django-scraper/manage.py makemigrations && python /usr/src/django-scraper/manage.py migrate && python /usr/src/django-scraper/manage.py runserver 0.0.0.0:8000"
     depends_on:
       - products_db
-  products_db:
-    image: postgres:13.1-alpine
-    environment: 
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=123456
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    ports:
-      - 5432:5432
   redis_app:
     image: redis
+    command: redis-server
+  # celery:
+  #   build: .
+  #   command: celery -A main worker -l info
+  #   links:
+  #     - redis_app
+  worker:
+    build: .
+    command: >
+      sh -c "celery -A main worker -l info"
+    depends_on:
+      - redis_app 
+      - beat
+  beat:
+    build: .
+    command: >
+      sh -c "celery -A main beat -l info"
+    depends_on: 
+      - redis_app
+
 
 volumes:
   postgres_data:
