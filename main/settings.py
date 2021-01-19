@@ -18,7 +18,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 env = environ.Env(DEBUG=(bool, False))
-# reading .env file
 env_file = os.path.join(BASE_DIR, ".env")
 environ.Env.read_env(env_file)
 # print(f"BASE DIR : {BASE_DIR} ENV FILE {env_file}")
@@ -95,6 +94,11 @@ DATABASES = {
     }
 }
 
+DB_NAME = env('DATABASE_NAME')
+DB_USER = env('DATABASE_USER')
+DB_PASS = env('DATABASE_PASSWORD')
+DB_HOST = env('DATABASE_HOST')
+DB_PORT = env('DATABASE_PORT')
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

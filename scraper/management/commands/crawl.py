@@ -1,9 +1,8 @@
 from django.core.management.base import BaseCommand
 from scrapy.crawler import CrawlerProcess
 from scrapy.settings import Settings
-
 from scraper.scraper import settings as my_settings
-from scraper.scraper.spiders.products_spider import StoreSpider, BasicSpiderShopWW, BasicSpiderSulpak
+from scraper.scraper.spiders.products_spider import StoreSpider, BasicSpiderShopWW, BasicSpiderSulpak, SeleniumSpiderTechnodom
 
 
 class Command(BaseCommand):
@@ -14,4 +13,5 @@ class Command(BaseCommand):
         process.crawl(StoreSpider)
         process.crawl(BasicSpiderShopWW)
         process.crawl(BasicSpiderSulpak)
+        process.crawl(SeleniumSpiderTechnodom)
         process.start()

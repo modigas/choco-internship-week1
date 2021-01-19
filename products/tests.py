@@ -9,4 +9,3 @@ class ProductsTestCase(TestCase):
         """
         res = self.client.get('/')
         self.assertEqual(res.status_code, 200)
-        

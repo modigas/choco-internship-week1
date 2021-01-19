@@ -5,12 +5,13 @@ from rest_framework.views import APIView
 from .models import BaseModel
 from .serializers import BaseModelSerializer
 
+
 class BaseModelListView(APIView):
 
-  def get(self, request):
-    products = BaseModel.objects.all()
-    serializer = BaseModelSerializer(products, many=True)
-    return Response(serializer.data)
+    def get(self, request):
+        products = BaseModel.objects.all()
+        serializer = BaseModelSerializer(products, many=True)
+        return Response(serializer.data)
 
 # from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 

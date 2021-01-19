@@ -17,14 +17,15 @@ SULPAK_URLS = ['https://www.sulpak.kz/f/smartfoniy/nur_sultan',
                'https://www.sulpak.kz/f/videokartiy/nur_sultan',
                'https://www.sulpak.kz/f/processoriy/nur_sultan']
 
+
 def strPriceToNum(price):
     res = ''
-    if type(price) == str:
+    if isinstance(price, str):
         for el in re.findall(r'\d+', price):
             res += el
         try:
             num = int(res)
-        except:
+        except BaseException:
             num = 0
         return num
     else:

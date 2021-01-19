@@ -7,7 +7,12 @@
 
 
 from scrapy_djangoitem import DjangoItem
-from products.models import Product, BaseModel
+from products.models import BaseModel, Category
+
 
 class ScraperItem(DjangoItem):
     django_model = BaseModel
+
+
+class ScraperCats(DjangoItem):
+    django_cats = Category
