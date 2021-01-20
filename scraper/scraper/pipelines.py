@@ -5,25 +5,36 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
-from word2number import w2n
-import psycopg2
 import re
 from .consts import CATEGORIES
-from main.settings import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 from difflib import SequenceMatcher
+from google.cloud import bigquery
+from datetime import datetime
+
+
+table_id = 'precise-antenna-302106.storesitems.products_basemodel'
 
 
 class ScraperPipeline(object):
     """
     Saves Item to the database
     """
-    count = 0
+    def __init__(self):
+        self.client = bigquery.Client()
+
     def process_item(self, item, spider):
-        self.count += 1
-        print(f'''
-            COUNT OF PARSERS {self.count}
-        ''')
-        item.save()
+        to_insert = [
+            {u"title": item['title'],
+             u"category": item['category'],
+             u"price": item['price'],
+             u"storeName": item['storeName'],
+             u"dateAndTime": item['dateAndTime'].timestamp()}
+        ]
+        err = self.client.insert_rows_json(table_id, to_insert)
+        # if err == []:
+        #
+        # else:
+        # item.save()
         return item
 
 
@@ -46,6 +57,8 @@ class CategoryPipeline(object):
     """
     def process_item(self, item, spider):
         if item.get('category'):
+            if '?' in item['category']:
+                item['category'] = item['category'].split('?')[0]
             for cat in CATEGORIES:
                 sim_ratio = SequenceMatcher(None, cat, item['category']).ratio()
                 if sim_ratio >= 0.5:

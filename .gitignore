@@ -17,3 +17,5 @@ env
 env/
 venv
 venv/
+test*
+*test

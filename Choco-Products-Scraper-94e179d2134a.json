@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "precise-antenna-302106",
+  "private_key_id": "94e179d2134a20500e0f775dd5e0f82c845575d6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCyedptS0SMnGq8\n59BMVdab8kPClpHF5Kw+tptZVcx5/miYmvyjYCzokn/Jh6lm/LlQrbOlxlWHvTIB\ndBdIOOq6pdmjeTESCDFuHyHHNTQ960oF+XY3lqVvvavG2clf2IfPYf35YSQPvOAX\nDa+dkKKBuEVVZW+8Tq3M6pAXUimMLATfOuzciYVmOyVayGJ2ViqDAwuCSxj407DJ\njgGl57cV2JYyl3SkHku+qj+XziqImOKTN1dTfFg1tLk4iAhZa1CSMI+BsGjxRJKN\nVAsmuwpXdCwBXH+Uhlh8RIJSFvqX8T+JbShlJei7gJ+mRpn66vVoB2dsJtdMEQek\n+jxzVEzHAgMBAAECggEAIubRYC4n6ZdtCCQNB+CBZ12pApSPTTO6u0jaeE3e/rxR\nmAY3AXv9TD3Z3384EXu6gZx2VSTD9Rd6f+5D30vCG13zgZRhlDUl9XMBGAO/g5xP\njXuLMrOzBncA8JIGX0foxxVSpUHp22oEKH30qctu/A8c/+YmQ5zfQANeyjC3D0H3\nygMJmA9DlMiQfX1J9e5BrIK26hFJKw2dOxFQfAoix7kH6WTvik6GMF0zL4VWR8Xi\nta6dEOihVHoe1c9KwxtlVm04impZTf7EtBYxTfvYGBAamcZakXU7SAs3/4At1EzI\n293DXZPfKb1yRDWHjou4Nz5EjphAnSN4OBcRXx/gAQKBgQD6gpTOFh496QaSALQW\nV2QHAcW053+OVD6tqpdiZ4ZN9jQRldFIxCaPmdlK8nuC+FEqKxVfQ1yvqbcuEHs9\n9rlwdHdkXxzuyxPTWCW6jZz8lFRUAh2O7+rrwFj6SvR16fDL20jkBL/4pinNL3Qa\nEFdLy/4a3Iqom2BXFeyGZv4RxwKBgQC2YyTt+WDRy5Wg+Ujh8v8XJRtkaWmt30DK\nsqXaGl+EQKUqHfSnk01gwqGVeGiXUlqv3bggV5mzeJXtRnMNIlUFyuVLQx4cBRw9\nEsQZixynaXj1hcdSmrQZX2z3/legE2w2yIlGtPKgjO/9k8AMI7hIEnqFgzWbPyaD\n50cM2xftAQKBgQD0uBfR8317kWbfvlwu7xRCXBLdlMDhM58/XEUi1ms3Qeq/uxGF\n+kiJRAwn0RWjbh0sCoaIV2/2Et9l2qfqclnZZ40yuk+zXyNw9M12ntzbSbPPlXl2\npx1hTLgfWpXRksWu//sG9TTsHLb9QPw0cf41h4QmjYfPCmpk6H/1FCvjBQKBgDek\ng62+eRVIQPv9UYjtc3mCLpsxtbX/+Gpemk6x4RYeCsWQogVF4UN13YoWVAJmc5hX\n0ka7sv6X+VWMOql1Ie9EeTO+5D60KGtRgFYypKlGekqdZ7QB0pQzErGN/PmvM0J7\nZ7YUmjj1BnqcSujpNN14Fb0JzJ7yYzO2qWx4oxIBAoGBAKwD1V//xthUkv8ACG0A\nckR0g+go81mXxz29vGOZU52PMZ4eKL7ZQ/M2aLJqS8vSQC6wjy3ftie42ZikhVw0\nX7uVM3IGp2uewenN0g95Jo7oKMj3Iw5yRDNKbpQezTTvrBDHHn4R8MNt63X6etw3\n/tGkt6n2yJuszogNfzq8V7Zd\n-----END PRIVATE KEY-----\n",
+  "client_email": "modigas@precise-antenna-302106.iam.gserviceaccount.com",
+  "client_id": "110726120559286116908",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/modigas%40precise-antenna-302106.iam.gserviceaccount.com"
+}

@@ -130,6 +130,7 @@ class BasicSpiderSulpak(scrapy.Spider):
                 loader = ItemLoader(item=ScraperItem(), response=response)
                 loader.default_output_processor = TakeFirst()
                 decomp = response.url.split('/f')
+
                 curr_date = datetime.now()
                 loader.add_value('title', title)
                 if isinstance(price, str):
