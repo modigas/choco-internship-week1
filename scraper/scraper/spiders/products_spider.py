@@ -4,7 +4,7 @@ from scraper.scraper import scrape_urls
 from datetime import datetime
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import TakeFirst
-from scraper.scraper.items import ScraperItem, ScraperCats
+from scraper.scraper.items import ScraperItem
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -163,6 +163,7 @@ class SeleniumSpiderTechnodom(scrapy.Spider):
     def parse(self, response):
         options = webdriver.FirefoxOptions()
         options.add_argument('--headless')
+
         # des_cap = options.to_capabilities()
         # driver = webdriver.Firefox(
         #     executable_path='./geckodriver', firefox_options=options)
