@@ -15,5 +15,5 @@ def crawl_products():
     call_command('crawl')
     logger.info("Products scraped")
 
-# obj = locals()['crawl_products']
-# obj.run()
+obj = locals()['crawl_products']
+obj.run()

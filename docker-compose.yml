@@ -19,9 +19,14 @@ services:
       sh -c "python /usr/src/django-scraper/manage.py makemigrations && python /usr/src/django-scraper/manage.py migrate && python /usr/src/django-scraper/manage.py runserver 0.0.0.0:8000"
     depends_on:
       - products_db
+      - selenium
   redis_app:
     image: redis
     command: redis-server
+  selenium:
+    image: selenium/standalone-firefox
+    ports:
+      - 4444:4444
   worker:
     build: .
     command: >

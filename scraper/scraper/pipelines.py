@@ -6,6 +6,7 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
 import re
+import os
 from .consts import CATEGORIES
 from difflib import SequenceMatcher
 from google.cloud import bigquery
@@ -13,7 +14,7 @@ from datetime import datetime
 
 
 table_id = 'precise-antenna-302106.storesitems.products_basemodel'
-
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/usr/src/django-scraper/Choco-Products-Scraper-94e179d2134a.json'
 
 class ScraperPipeline(object):
     """
@@ -34,7 +35,7 @@ class ScraperPipeline(object):
         # if err == []:
         #
         # else:
-        # item.save()
+        item.save()
         return item
 
 
@@ -66,24 +67,3 @@ class CategoryPipeline(object):
             return item
 
 
-
-# class PropertyPricePipeline(object):
-#     """
-#     Removes signs from the price value. i.e replaces 10000/= with 10000
-#     """
-#     def process_item(self, item, spider):
-#         if item.get('price'):
-#             item['price'] = item['price'].replace('/=', '')
-#             return item
-
-
-# class ConvertNumPipeline(object):
-#     """
-#     Converts words to number values for bedrooms and bathrooms
-#     """
-#     def process_item(self, item, spider):
-#         if item.get('bathrooms'):
-#             item['bathrooms'] = w2n.word_to_num(item['bathrooms'])
-#         if item.get('bedrooms'):
-#             item['bedrooms'] = w2n.word_to_num(item['bedrooms'])
-#         return item

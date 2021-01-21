@@ -11,6 +11,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from scrapy.selector import Selector
 from selenium import webdriver
 from .urls import *
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class StoreSpider(scrapy.Spider):
@@ -162,10 +163,10 @@ class SeleniumSpiderTechnodom(scrapy.Spider):
     def parse(self, response):
         options = webdriver.FirefoxOptions()
         options.add_argument('--headless')
-        des_cap = options.to_capabilities()
-        driver = webdriver.Firefox(
-            executable_path='./geckodriver', firefox_options=options)
-
+        # des_cap = options.to_capabilities()
+        # driver = webdriver.Firefox(
+        #     executable_path='./geckodriver', firefox_options=options)
+        driver = webdriver.Remote("http://selenium:4444/wd/hub", DesiredCapabilities.FIREFOX)
         driver.get(response.url)
         driver.implicitly_wait(30)
 

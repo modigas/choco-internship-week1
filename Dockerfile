@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.7.2
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -10,6 +10,7 @@ RUN pip install -r ./requirments.txt
 COPY ./ /usr/src/django-scraper
 
 RUN chmod +x launch_script.sh
+# RUN export GOOGLE_APPLICATION_CREDENTIALS="/usr/src/django-scraper/Choco-Products-Scraper-94e179d2134a.json"
 
 EXPOSE 8000
 
