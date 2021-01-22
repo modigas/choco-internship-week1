@@ -32,9 +32,6 @@ class ScraperPipeline(object):
              u"dateAndTime": item['dateAndTime'].timestamp()}
         ]
         err = self.client.insert_rows_json(table_id, to_insert)
-        # if err == []:
-        #
-        # else:
         item.save()
         return item
 

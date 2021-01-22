@@ -166,7 +166,7 @@ class SeleniumSpiderTechnodom(scrapy.Spider):
 
         # des_cap = options.to_capabilities()
         # driver = webdriver.Firefox(
-        #     executable_path='./geckodriver', firefox_options=options)
+        #     executable_path='./geckodriver_mac', firefox_options=options)
         driver = webdriver.Remote("http://selenium:4444/wd/hub", DesiredCapabilities.FIREFOX)
         driver.get(response.url)
         driver.implicitly_wait(30)

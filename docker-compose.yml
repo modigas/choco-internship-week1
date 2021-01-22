@@ -13,6 +13,7 @@ services:
     build: .
     volumes:
       - .:/usr/src/django-scraper
+    restart: on-failure
     ports:
       - 8000:8000
     command: >
@@ -22,6 +23,7 @@ services:
       - selenium
   redis_app:
     image: redis
+    restart: on-failure
     command: redis-server
   selenium:
     image: selenium/standalone-firefox
@@ -29,6 +31,7 @@ services:
       - 4444:4444
   worker:
     build: .
+    restart: on-failure
     command: >
       sh -c "celery -A main worker -l info"
     depends_on:
@@ -36,6 +39,7 @@ services:
       - beat
   beat:
     build: .
+    restart: on-failure
     command: >
       sh -c "celery -A main beat -l info"
     depends_on: 

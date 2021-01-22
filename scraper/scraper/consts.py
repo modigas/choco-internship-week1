@@ -2,5 +2,11 @@ CATEGORIES = [
     'smartphones',
     'notebooks',
     'processors',
-    'videocard'
+    'videocard',
+    'televizory',
+    'naushniki',
+    'monitory',
+    'holodilniki',
+    'klaviatury',
+    'myshi'
 ]

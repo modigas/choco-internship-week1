@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from rest_framework.decorators import api_view
 from .models import BaseModel
 from .serializers import BaseModelSerializer
 
+# @api_view(['GET'])
+# def apiOverview(request):
+#
+
 
 class BaseModelListView(APIView):
-
     def get(self, request):
         products = BaseModel.objects.all()
         serializer = BaseModelSerializer(products, many=True)
